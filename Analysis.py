@@ -28,6 +28,16 @@ def convert_all_memes_to_text(meme_folder_path: str,
         file.close()
         print(i, "/", len(meme_names))
 
-print(convert_all_memes_to_text(os.path.join("scraping", "auto_download0"),
-                                os.path.join("scraping", "exports")))
+def get_saved_meme_text(text_meme_folder_path: str):
+
+    for file_name in os.listdir(text_meme_folder_path):
+        file = open(os.path.join(text_meme_folder_path, file_name), "r", encoding = "utf-8")
+        print(file_name)
+        print(file.read())
+        file.close()
+
+print(get_saved_meme_text(text_meme_folder_path = os.path.join("scraping", "exports")))
+
+# print(convert_all_memes_to_text(os.path.join("scraping", "auto_download0"),
+#                                 os.path.join("scraping", "exports")))
 
