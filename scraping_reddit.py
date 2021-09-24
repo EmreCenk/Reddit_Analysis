@@ -15,6 +15,11 @@ class memeGetterReddit(praw.Reddit):
         return list(submission_list)
 
     def get_image_urls_and_titles(self, how_many = 100, subreddit_name = None) -> Tuple[List[str], List[str]]:
+        """
+        :param how_many: How many submissions you want to go over in the api
+        :param subreddit_name: name of the subreddit you want to go over
+        :return: A tuple that contains first the list of image urls, and second the titles
+        """
         submission_list = self.get_memes(how_many = how_many, subreddit_name = subreddit_name)
         image_url_list = []
         titles = []
