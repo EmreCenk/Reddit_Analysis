@@ -32,15 +32,20 @@ class memeGetterReddit(praw.Reddit):
 
         return (image_url_list, titles)
 
-    def get_save_urls_and_titles(self, txt_path_for_img_url: str = "image_urls.txt", txt_path_for_titles: str = "titles.txt"):
-        urls, titles = me.get_image_urls_and_titles()
+    def get_save_urls_and_titles(self,
+                                 txt_path_for_img_url: str = "image_urls.txt",
+                                 txt_path_for_titles: str = "titles.txt",
+                                 how_many = 3,
+                                 subreddit_name = None) -> None:
 
-        img_url_file = open(txt_path_for_img_url, "a+")
+        urls, titles = me.get_image_urls_and_titles(how_many = how_many, subreddit_name = subreddit_name)
+
+        img_url_file = open(txt_path_for_img_url, "a+", encoding="utf-8")
         for k in urls:
             img_url_file.write(k + "\n")
         img_url_file.close()
 
-        title_file = open(txt_path_for_titles, "a+")
+        title_file = open(txt_path_for_titles, "a+", encoding="utf-8")
         for k in titles:
             title_file.write(k + "\n")
         title_file.close()
@@ -59,5 +64,6 @@ if __name__ == '__main__':
     me = memeGetterReddit(client_id = client_id,
                           client_secret = client_secret,
                           user_agent = user_agent)
+    me.get_save_urls_and_titles(how_many = 100)
 
 
