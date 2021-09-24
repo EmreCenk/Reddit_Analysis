@@ -5,8 +5,8 @@
 
 import os
 import requests
-
-def download_all(pic_list: str,
+from typing import List
+def download_all(pic_list: List[str],
                  folder_path: str = "",
                  new_folder_name: str = "auto_download",
                  create_new: bool = True):
