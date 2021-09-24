@@ -8,13 +8,14 @@ class memeGetterReddit(praw.Reddit):
     def __init__(self, **config_settings: Union[str, bool]):
         super().__init__(**config_settings)
 
-    def get_memes(self, how_many = 100, subreddit_name = None) -> List[praw.reddit.Submission]:
+    def get_memes(self, how_many = 3, subreddit_name = None) -> List[praw.reddit.Submission]:
         if subreddit_name == None:
             subreddit_name = "memes"
         submission_list = self.subreddit(subreddit_name).top(limit = how_many)
+        print(submission_list)
         return list(submission_list)
 
-    def get_image_urls_and_titles(self, how_many = 100, subreddit_name = None) -> Tuple[List[str], List[str]]:
+    def get_image_urls_and_titles(self, how_many = 3, subreddit_name = None) -> Tuple[List[str], List[str]]:
         """
         :param how_many: How many submissions you want to go over in the api
         :param subreddit_name: name of the subreddit you want to go over
@@ -39,13 +40,21 @@ if __name__ == '__main__':
     reddit_username = os.environ["reddit_username2"]
     reddit_password = os.environ["reddit_password2"]
     client_secret = os.environ["reddit_client_secret"]
+
+
     client_id = os.environ["reddit_client_id"]
     user_agent = os.environ["reddit_user_agent"]
 
-    reddit = praw.Reddit(
-        client_id=client_id,
-        client_secret=client_secret,
-        user_agent=user_agent
-    )
+    me = memeGetterReddit(client_id = client_id,
+                          client_secret = client_secret,
+                          user_agent = user_agent)
 
-    print(reddit_username, reddit_password)
+    print(me.get_image_urls_and_titles())
+
+    # reddit = praw.Reddit(
+    #     client_id=client_id,
+    #     client_secret=client_secret,
+    #     user_agent=user_agent
+    # )
+    #
+    # print(reddit_username, reddit_password)
