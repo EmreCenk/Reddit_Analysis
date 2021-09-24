@@ -20,7 +20,10 @@ def download_all(pic_list: List[str],
     """
     original = os.getcwd()
 
-    os.chdir(folder_path)
+    try:
+        os.chdir(folder_path)
+    except:
+        pass
 
     index = 0
 
@@ -54,3 +57,11 @@ def download_all(pic_list: List[str],
         file.close()
 
     os.chdir(original)
+
+if __name__ == '__main__':
+    file = open("image_urls.txt", "r")
+    dwn_list = file.read().split("\n")
+    file.close()
+
+
+    download_all(pic_list = dwn_list)
