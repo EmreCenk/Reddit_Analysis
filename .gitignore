@@ -132,5 +132,5 @@ dmypy.json
 # custom:
 .idea/
 memes/
-auto_download0/
-exports/
+#auto_download0/
+#exports/
