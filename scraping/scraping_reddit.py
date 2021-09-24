@@ -31,6 +31,19 @@ class memeGetterReddit(praw.Reddit):
                 titles.append(k.title)
 
         return (image_url_list, titles)
+
+    def get_save_urls_and_titles(self, txt_path_for_img_url: str = "image_urls.txt", txt_path_for_titles: str = "titles.txt"):
+        urls, titles = me.get_image_urls_and_titles()
+
+        img_url_file = open(txt_path_for_img_url, "a+")
+        for k in urls:
+            img_url_file.write(k + "\n")
+        img_url_file.close()
+
+        title_file = open(txt_path_for_titles, "a+")
+        for k in titles:
+            title_file.write(k + "\n")
+        title_file.close()
 if __name__ == '__main__':
 
     # I have saved my reddit username and password as environment variables
@@ -40,8 +53,6 @@ if __name__ == '__main__':
     reddit_username = os.environ["reddit_username2"]
     reddit_password = os.environ["reddit_password2"]
     client_secret = os.environ["reddit_client_secret"]
-
-
     client_id = os.environ["reddit_client_id"]
     user_agent = os.environ["reddit_user_agent"]
 
@@ -49,12 +60,4 @@ if __name__ == '__main__':
                           client_secret = client_secret,
                           user_agent = user_agent)
 
-    print(me.get_image_urls_and_titles())
 
-    # reddit = praw.Reddit(
-    #     client_id=client_id,
-    #     client_secret=client_secret,
-    #     user_agent=user_agent
-    # )
-    #
-    # print(reddit_username, reddit_password)
