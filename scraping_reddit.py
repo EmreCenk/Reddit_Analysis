@@ -2,7 +2,7 @@
 
 import os
 import praw
-from typing import Union, List
+from typing import Union, List, Tuple
 
 class memeGetterReddit(praw.Reddit):
     def __init__(self, **config_settings: Union[str, bool]):
@@ -14,17 +14,17 @@ class memeGetterReddit(praw.Reddit):
         submission_list = self.subreddit(subreddit_name).top(limit = how_many)
         return list(submission_list)
 
-    def get_image_urls_and_titles(self):
-        submission_list = self.get_memes()
+    def get_image_urls_and_titles(self, how_many = 100, subreddit_name = None) -> Tuple[List[str], List[str]]:
+        submission_list = self.get_memes(how_many = how_many, subreddit_name = subreddit_name)
         image_url_list = []
         titles = []
         for k in submission_list:
             current_url = k.url
             if current_url.endswith(".jpg") or current_url.endswith(".png") or current_url.endswith("jpeg"):
-                image_url_list.append(k)
+                image_url_list.append(current_url)
                 titles.append(k.title)
 
-        return image_url_list
+        return (image_url_list, titles)
 if __name__ == '__main__':
 
     # I have saved my reddit username and password as environment variables
