@@ -1,3 +1,4 @@
+import copy
 import os
 import pytesseract
 from dotenv import load_dotenv
@@ -49,9 +50,24 @@ def get_all_words(text_meme_folder_path: str):
                 all_words.append(j)
 
     return all_words
+def count_list(list_of_words):
+    counted = {}
+    for w in list_of_words:
+        w = w.lower()
+        if w in counted:
+            counted[w] += 1
+        else:
+            counted[w] = 1
 
+    return counted
 if __name__ == '__main__':
-    print(get_all_words(os.path.join("scraping", "exports")))
-# print(convert_all_memes_to_text(os.path.join("scraping", "auto_download0"),
-#                                 os.path.join("scraping", "exports")))
+    word_list = get_all_words(os.path.join("scraping", "exports"))
+    counted = count_list(word_list)
+
+    sortCount = sorted(counted, key = lambda element: counted[element])
+    for k in sortCount:
+        print(k, counted[k])
+
+    # print(convert_all_memes_to_text(os.path.join("scraping", "auto_download1"),
+    #                                 os.path.join("scraping", "exports")))
 

@@ -49,6 +49,8 @@ class memeGetterReddit(praw.Reddit):
         for k in titles:
             title_file.write(k + "\n")
         title_file.close()
+
+
 if __name__ == '__main__':
 
     # I have saved my reddit username and password as environment variables
@@ -64,6 +66,6 @@ if __name__ == '__main__':
     me = memeGetterReddit(client_id = client_id,
                           client_secret = client_secret,
                           user_agent = user_agent)
-    me.get_save_urls_and_titles(how_many = 100)
+    me.get_save_urls_and_titles(how_many = 1000)
 
 
