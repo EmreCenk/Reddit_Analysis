@@ -2,7 +2,12 @@
 
 
 
+from collect_scraped_data import get_scraped_sorted_words
 
+a = get_scraped_sorted_words()
+print(a)
+
+"""
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
@@ -20,3 +25,5 @@ plt.title("Word Usage in Top Memes Posted in r/Memes")
 plt.xticks(x_pos, x)
 
 plt.show()
+
+"""
