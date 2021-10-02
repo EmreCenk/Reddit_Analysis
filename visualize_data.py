@@ -6,7 +6,7 @@ from collect_scraped_data import get_scraped_sorted_words
 
 x, counted = get_scraped_sorted_words()
 y = []
-how_many_to_include = 25
+how_many_to_include = 30
 x = x[len(x) - how_many_to_include: ]
 for k in x:
     y.append(counted[k])
