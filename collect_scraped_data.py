@@ -68,7 +68,7 @@ def get_scraped_sorted_words():
     sortCount = sorted(counted, key=lambda element: counted[element])
     # for k in sortCount:
     #     print(k, counted[k])
-
+    return sortCount
 if __name__ == '__main__':
     print(get_scraped_sorted_words())
 
