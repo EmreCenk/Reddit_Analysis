@@ -4,15 +4,17 @@
 
 from collect_scraped_data import get_scraped_sorted_words
 
-a = get_scraped_sorted_words()
-print(a)
+x, counted = get_scraped_sorted_words()
+y = []
+how_many_to_include = 25
+x = x[len(x) - how_many_to_include: ]
+for k in x:
+    y.append(counted[k])
 
-"""
 import matplotlib.pyplot as plt
 plt.style.use('ggplot')
 
-x = ['a', 'b', 'c', 'd', 'e', 'f']
-y = [1, 2, 3, 4, 5, 6]
+
 
 x_pos = [i for i in range(len(x))]
 print(x_pos)
@@ -26,4 +28,3 @@ plt.xticks(x_pos, x)
 
 plt.show()
 
-"""
