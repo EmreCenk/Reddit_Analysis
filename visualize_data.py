@@ -1,6 +1,6 @@
 
 
-
+#TODO: COMPARE DATA TO MOST COMMON WORDS IN ENGLISH
 
 from collect_scraped_data import get_scraped_sorted_words
 
