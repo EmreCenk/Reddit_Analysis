@@ -38,10 +38,10 @@ def get_saved_meme_text(text_meme_folder_path: str) -> List[str]:
         file.close()
     return text_list
 
-def erase_occurences(word:str, list_of_words: List, what_to_replace: str = ""):
+def erase_occurences(word:str, list_of_words: List, what_to_replace_with: str = ""):
     new_word = str(word)
     for i in range(len(list_of_words)):
-        new_word = new_word.replace(what_to_replace, what_to_replace)
+        new_word = new_word.replace(list_of_words[i], what_to_replace_with)
     return new_word
 def get_all_words(text_meme_folder_path: str):
     to_replace = [",", ".", " ", "", ":", '!', '"', '#',
@@ -51,7 +51,7 @@ def get_all_words(text_meme_folder_path: str):
                   '^', '_', '`', '{', '|', '}', '~', '/',
                   r'\ '[:-1], "'", "`", "‘", "‘", "'",
                   '0', '1', '2', '3', '4', '5', '6',
-                  '7', '8', '9']
+                  '7', '8', '9', '"']
 
     all_text = get_saved_meme_text(text_meme_folder_path = text_meme_folder_path)
     all_words = []
@@ -63,6 +63,7 @@ def get_all_words(text_meme_folder_path: str):
                 if j == "":
                     continue
                 all_words.append(j)
+
 
     return all_words
 def count_list(list_of_words):
