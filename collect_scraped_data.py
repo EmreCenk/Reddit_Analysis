@@ -58,15 +58,19 @@ def count_list(list_of_words):
             counted[w] += 1
         else:
             counted[w] = 1
-
     return counted
-if __name__ == '__main__':
+
+def get_scraped_sorted_words():
+    """Counting words from the scraped data, then sorting by occurence:"""
     word_list = get_all_words(os.path.join("scraping", "exports"))
     counted = count_list(word_list)
 
-    sortCount = sorted(counted, key = lambda element: counted[element])
+    sortCount = sorted(counted, key=lambda element: counted[element])
     for k in sortCount:
         print(k, counted[k])
+
+if __name__ == '__main__':
+    print(get_scraped_sorted_words())
 
     # print(convert_all_memes_to_text(os.path.join("scraping", "auto_download1"),
     #                                 os.path.join("scraping", "exports")))
