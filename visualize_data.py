@@ -5,6 +5,8 @@
 from collect_scraped_data import get_scraped_sorted_words
 
 x, counted = get_scraped_sorted_words()
+for i in range(1, len(x)):
+    print(str(i) + ".", x[-i] , "-", counted[x[-i]])
 y = []
 how_many_to_include = 30
 x = x[len(x) - how_many_to_include: ]
