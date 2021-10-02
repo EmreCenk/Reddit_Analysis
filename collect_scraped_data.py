@@ -44,14 +44,14 @@ def erase_occurences(word:str, list_of_words: List, what_to_replace: str = ""):
         new_word = new_word.replace(what_to_replace, what_to_replace)
     return new_word
 def get_all_words(text_meme_folder_path: str):
-    to_replace = {",", ".", " ", "", ":", '!', '"', '#',
-                         '$', '%', '&', "'", '(', ')', '*', '+',
-                         ',', '-', '.', '/', ':', ';', '<',
-                         '=', '>', '?', '@', '[', r'\\', ']',
-                         '^', '_', '`', '{', '|', '}', '~', '/',
-                         r'\ '[:-1], "'", "`",
-                         '0', '1', '2', '3', '4', '5', '6',
-                         '7', '8', '9'}
+    to_replace = [",", ".", " ", "", ":", '!', '"', '#',
+                  '$', '%', '&', "'", '(', ')', '*', '+',
+                  ',', '-', '.', '/', ':', ';', '<',
+                  '=', '>', '?', '@', '[', r'\\', ']',
+                  '^', '_', '`', '{', '|', '}', '~', '/',
+                  r'\ '[:-1], "'", "`", "‘", "‘", "'",
+                  '0', '1', '2', '3', '4', '5', '6',
+                  '7', '8', '9']
 
     all_text = get_saved_meme_text(text_meme_folder_path = text_meme_folder_path)
     all_words = []
