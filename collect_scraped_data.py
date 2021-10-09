@@ -108,8 +108,22 @@ def get_english_common_words(path: str = "scraping/data_sets/english_common_word
     return (word_list, word_to_index)
 
 def compare_normal_to_reddit():
-    reddit_words = get_scraped_sorted_words()
-    print(reddit_words)
+    reddit_words, reddit_occurences = get_scraped_sorted_words()
+    english_words, english_occurences = get_english_common_words()
+
+    difference_list = []
+    for word in english_words:
+        if word in reddit_words:
+            # print(word)
+            current_reddit_word_rank = len(reddit_words) - reddit_words.index(word)
+            current_english_word_rank = english_occurences[word]
+            # difference = abs(current_english_word_rank - current_reddit_word_rank)
+            # print(current_english_word_rank, current_reddit_word_rank, word)
+            difference_list.append((word, current_reddit_word_rank, current_english_word_rank))
+
+    difference_list = sorted(difference_list, key = lambda element: abs(int(element[1] - element[2])))
+    print("yes")
+    for k in difference_list: print(abs(k[1] - k[2]), *k)
 if __name__ == '__main__':
     # print(get_scraped_sorted_words())
     # get_english_common_words()
