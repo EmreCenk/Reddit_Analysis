@@ -3,7 +3,7 @@ import os
 import pytesseract
 from dotenv import load_dotenv
 from PIL import Image
-from typing import List
+from typing import List, Tuple, Dict
 load_dotenv()
 
 tessPath = os.environ["tesseract_path"]
@@ -85,9 +85,32 @@ def get_scraped_sorted_words():
     # for k in sortCount:
     #     print(k, counted[k])
     return sortCount, counted
-if __name__ == '__main__':
-    print(get_scraped_sorted_words())
 
+def get_english_common_words(path: str = "scraping/data_sets/english_common_words.csv"):
+    file = open(path, "r")
+    info = file.read().split("\n")
+    file.close()
+
+    word_to_index = {}
+    word_list = []
+    for i in range(len(info)):
+        current_split = info[i].split(";")
+        try:
+            current_split[0] = int(current_split[0])
+            word_to_index[current_split[1]] = current_split[0] - 1
+            word_list.append(current_split[1])
+
+
+
+        except: pass #the line isn't a part of the list
+
+    print(word_to_index)
+    return (word_to_index, word_list)
+
+
+if __name__ == '__main__':
+    # print(get_scraped_sorted_words())
+    get_english_common()
     # print(convert_all_memes_to_text(os.path.join("scraping", "auto_download1"),
     #                                 os.path.join("scraping", "exports")))
 
