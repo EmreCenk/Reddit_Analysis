@@ -76,7 +76,7 @@ def count_list(list_of_words):
             counted[w] = 1
     return counted
 
-def get_scraped_sorted_words():
+def get_scraped_sorted_words() -> Tuple[List[str], Dict[str: int]]:
     """Counting words from the scraped data, then sorting by occurence:"""
     word_list = get_all_words(os.path.join("scraping", "exports"))
     counted = count_list(word_list)
@@ -86,7 +86,7 @@ def get_scraped_sorted_words():
     #     print(k, counted[k])
     return sortCount, counted
 
-def get_english_common_words(path: str = "scraping/data_sets/english_common_words.csv"):
+def get_english_common_words(path: str = "scraping/data_sets/english_common_words.csv") -> Tuple[Dict[str: int], List[str]]:
     file = open(path, "r")
     info = file.read().split("\n")
     file.close()
@@ -107,10 +107,15 @@ def get_english_common_words(path: str = "scraping/data_sets/english_common_word
     print(word_to_index)
     return (word_to_index, word_list)
 
-
+def compare_normal_to_reddit():
+    reddit_words = get_scraped_sorted_words()
+    print(reddit_words)
 if __name__ == '__main__':
     # print(get_scraped_sorted_words())
-    get_english_common()
+    # get_english_common_words()
+
+    compare_normal_to_reddit()
+
     # print(convert_all_memes_to_text(os.path.join("scraping", "auto_download1"),
     #                                 os.path.join("scraping", "exports")))
 
